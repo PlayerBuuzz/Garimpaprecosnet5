@@ -1,309 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Garimpa Preços</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garimpa Preços</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
-
 <body>
-
-
-<header>
-
-<div class="logo">
-
-<h1>⛏️ Garimpa Preços</h1>
-
-<span>
-Antes de comprar, garimpe.
-</span>
-
-</div>
-
-
-<div class="pesquisa">
-
-<input 
-type="text"
-id="pesquisa"
-placeholder="Pesquisar produtos..."
->
-
-
-<button id="btnPesquisar">
-🔍
-</button>
-
-
-</div>
-
-
-</header>
-
-
-
-
-<section class="banner">
-
-<h2>
-Encontre o menor preço da internet
-</h2>
-
-<p>
-Compare ofertas das principais lojas e economize.
-</p>
-
-
-<button id="btnPromocoes">
-Ver Promoções
-</button>
-
-
-</section>
-
-
-
-
-
-<main>
-
-
-<h2 class="titulo">
-Produtos em destaque
-</h2>
-
-
-<div id="produtos">
-
-<h3>
-Carregando produtos...
-</h3>
-
-
-</div>
-
-
-</main>
-
-
-
-
-<footer>
-
-© 2026 Garimpa Preços
-
-</footer>
-
-
-
-
-
-<script type="module">
-
-
-import { initializeApp } 
-from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-
-
-import { getFirestore, collection, getDocs } 
-from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
-
-
-
-
-
-const firebaseConfig = {
-
-
-apiKey: "AIzaSyCMlDsnSOJC5DNAd47SY6T0xije_IHNv88",
-
-authDomain: "garimpaprecos-eac4e.firebaseapp.com",
-
-projectId: "garimpaprecos-eac4e",
-
-storageBucket: "garimpaprecos-eac4e.firebasestorage.app",
-
-messagingSenderId: "268744385879",
-
-appId: "1:268744385879:web:de590dd22b713037ae4a12"
-
-
-};
-
-
-
-
-
-const app = initializeApp(firebaseConfig);
-
-
-const db = getFirestore(app);
-
-
-
-console.log("🔥 Firebase conectado");
-
-
-
-
-
-async function carregarProdutos(){
-
-
-const div = document.getElementById("produtos");
-
-
-
-try{
-
-
-const snapshot = await getDocs(
-collection(db,"produtos")
-);
-
-
-
-console.log(
-"Produtos encontrados:",
-snapshot.size
-);
-
-
-
-if(snapshot.empty){
-
-
-div.innerHTML = `
-
-<h2>
-Nenhum produto cadastrado
-</h2>
-
-`;
-
-
-return;
-
-
-}
-
-
-
-let html = "";
-
-
-
-snapshot.forEach((doc)=>{
-
-
-const p = doc.data();
-
-
-console.log(
-p
-);
-
-
-
-html += `
-
-
-<div class="card-produto">
-
-
-<img src="${p.imagem || ''}">
-
-
-<div class="conteudo">
-
-
-<h2>
-${p.nome || "Produto"}
-</h2>
-
-
-<p>
-${p.descricao || ""}
-</p>
-
-
-<h3>
-
-R$ ${p.preco || "0"}
-
-</h3>
-
-
-<button class="btnOferta">
-
-Ver Oferta
-
-</button>
-
-
-</div>
-
-
-</div>
-
-
-
-`;
-
-
-
-});
-
-
-
-div.innerHTML = html;
-
-
-
-}catch(e){
-
-
-console.error(
-"Erro Firebase:",
-e
-);
-
-
-div.innerHTML = `
-
-<h2>
-Erro ao carregar produtos
-</h2>
-
-`;
-
-
-}
-
-
-
-}
-
-
-
-carregarProdutos();
-
-
-
-</script>
-
-
-
+  <header>
+    <div class="logo">
+      <h1>⛏️ Garimpa Preços</h1>
+      <span>Antes de comprar, garimpe.</span>
+    </div>
+    <div class="pesquisa">
+      <input type="text" id="pesquisa" placeholder="Pesquisar produtos...">
+      <button id="btnPesquisar">🔍</button>
+    </div>
+  </header>
+
+  <section class="banner">
+    <h2>Encontre o menor preço da internet</h2>
+    <p>Compare ofertas das principais lojas e economize.</p>
+    <button id="btnPromocoes">Ver Promoções</button>
+  </section>
+
+  <main>
+    <h2 class="titulo">Produtos em destaque</h2>
+    <div id="produtos">
+      <h3>Carregando produtos...</h3>
+    </div>
+  </main>
+
+  <footer>© 2026 Garimpa Preços</footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCMlDsnSOJC5DNAd47SY6T0xije_IHNv88",
+      authDomain: "garimpaprecos-eac4e.firebaseapp.com",
+      projectId: "garimpaprecos-eac4e",
+      storageBucket: "garimpaprecos-eac4e.firebasestorage.app",
+      messagingSenderId: "268744385879",
+      appId: "1:268744385879:web:de590dd22b713037ae4a12"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    console.log("🔥 Firebase conectado");
+
+    async function carregarProdutos() {
+      const div = document.getElementById("produtos");
+      try {
+        const snapshot = await getDocs(collection(db, "produtos"));
+        console.log("Produtos encontrados:", snapshot.size);
+
+        if (snapshot.empty) {
+          div.innerHTML = `<h2>Nenhum produto cadastrado</h2>`;
+          return;
+        }
+
+        let html = "";
+        snapshot.forEach((doc) => {
+          const p = doc.data();
+          console.log(p);
+          html += `
+            <div class="card-produto">
+              <img src="${p.imagem || ''}">
+              <div class="conteudo">
+                <h2>${p.nome || "Produto"}</h2>
+                <p>${p.descricao || ""}</p>
+                <h3>R$ ${p.preco || "0"}</h3>
+                <button class="btnOferta">Ver Oferta</button>
+              </div>
+            </div>
+          `;
+        });
+        div.innerHTML = html;
+      } catch (e) {
+        console.error("Erro Firebase:", e);
+        div.innerHTML = `<h2>Erro ao carregar produtos</h2>`;
+      }
+    }
+
+    carregarProdutos();
+  </script>
 </body>
-
 </html>
