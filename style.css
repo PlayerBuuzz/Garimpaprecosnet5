@@ -517,15 +517,31 @@ main{
 
 .conteudo p{
 
-    color:#b9b9b9;
+    color:#9a9a9a;
 
     font-size:14px;
 
-    line-height:23px;
+    line-height:24px;
 
     margin-bottom:18px;
 
-    flex:1;
+    min-height:70px;
+
+}
+
+.descricao{
+
+    color:#9a9a9a;
+
+    line-height:24px;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:3;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
 
 }
 
