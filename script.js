@@ -89,7 +89,7 @@ function renderizarProdutos(lista) {
                 <h3>R$ ${Number(produto.preco).toFixed(2)}</h3>
 
                 <a href="${produto.afiliado || "#"}" target="_blank">
-                    <button class="btnOferta">🛒 Ver Oferta</button>
+                    <button class="btnOferta">Ver Oferta</button>
                 </a>
             </div>
         </div>
