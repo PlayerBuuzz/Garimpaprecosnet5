@@ -1,157 +1,174 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lançar Produto - Garimpa Preços</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Produtos - Garimpa Preços</title>
 
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    <h1>⛏️ Garimpa Preços</h1>
-    <span>Antes de comprar, garimpe.</span>
-  </div>
-</header>
+    <header>
+        <div class="logo">
+            <h1>⛏️ Garimpa Preços</h1>
+            <span>Antes de comprar, garimpe.</span>
+        </div>
+    </header>
 
-<main style="width:90%;margin:40px auto;">
+    <main>
 
-<h2 class="titulo">Cadastrar Produtos</h2>
+        <h2 class="titulo">Cadastrar Produtos</h2>
 
-<form id="formProduto">
+        <form id="formProduto">
 
-<div id="listaProdutos">
+            <div id="listaProdutos">
 
-<div class="card-produto produto-item" style="padding:20px;margin-bottom:25px;">
+                <div class="produto-item">
 
-<h3>Produto 1</h3>
+                    <h3>Produto 1</h3>
 
-<label>Nome:</label>
-<input type="text" name="nome[]" required>
+                    <div class="campo">
+                        <label>Nome</label>
+                        <input type="text" name="nome[]" required>
+                    </div>
 
-<label>Descrição:</label>
-<textarea name="descricao[]" required></textarea>
+                    <div class="campo">
+                        <label>Categoria</label>
+                        <input type="text" name="categoria[]" required>
+                    </div>
 
-<label>Categoria:</label>
-<input type="text" name="categoria[]" required>
+                    <div class="campo">
+                        <label>Loja</label>
+                        <input type="text" name="loja[]" required>
+                    </div>
 
-<label>Loja:</label>
-<input type="text" name="loja[]" required>
+                    <div class="campo">
+                        <label>Preço</label>
+                        <input type="number" name="preco[]" step="0.01" required>
+                    </div>
 
-<label>Preço:</label>
-<input type="number" name="preco[]" step="0.01" required>
+                    <div class="campo">
+                        <label>Preço Antigo</label>
+                        <input type="number" name="precoAntigo[]" step="0.01">
+                    </div>
 
-<label>Preço Antigo:</label>
-<input type="number" name="precoAntigo[]" step="0.01">
+                    <div class="campo">
+                        <label>Imagem (URL)</label>
+                        <input type="text" name="imagem[]">
+                    </div>
 
-<label>Imagem (URL):</label>
-<input type="text" name="imagem[]">
+                    <div class="campo campo-full">
+                        <label>Descrição</label>
+                        <textarea name="descricao[]" required></textarea>
+                    </div>
 
-<label>Link Afiliado:</label>
-<input type="text" name="afiliado[]">
+                    <div class="campo campo-full">
+                        <label>Link Afiliado</label>
+                        <input type="text" name="afiliado[]">
+                    </div>
 
-<label>
-<input type="checkbox" name="destaque[]">
-Produto em destaque
-</label>
+                    <div class="campo campo-full">
+                        <label style="display:flex;align-items:center;gap:10px;">
+                            <input type="checkbox" name="destaque[]">
+                            Produto em destaque
+                        </label>
+                    </div>
 
-<button
-type="button"
-class="removerProduto btnOferta"
-style="background:#dc3545;margin-top:15px;">
-🗑️ Remover Produto
-</button>
+                    <div class="acoes">
+                        <button type="button" class="btnOferta removerProduto">
+                            🗑️ Remover Produto
+                        </button>
+                    </div>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-<div style="display:flex;gap:15px;flex-wrap:wrap;margin-top:20px;">
+            <br>
 
-<button
-type="button"
-id="addProduto"
-class="btnOferta">
+            <button type="button" class="btnOferta" id="addProduto">
+                ➕ Adicionar Produto
+            </button>
 
-➕ Adicionar Produto
+            <br><br>
 
-</button>
+            <button type="submit" class="btnOferta">
+                💾 Salvar Todos os Produtos
+            </button>
 
-<button
-type="submit"
-class="btnOferta">
+        </form>
 
-💾 Salvar Todos os Produtos
+    </main>
 
-</button>
+    <footer>
+        <p>© 2026 Garimpa Preços</p>
+    </footer>
 
-</div>
+    <script>
 
-</form>
+        let contador = 1;
 
-</main>
+        document.getElementById("addProduto").addEventListener("click", () => {
 
-<footer>
-<p>© 2026 Garimpa Preços</p>
-</footer>
+            contador++;
 
-<script>
+            const modelo = document.querySelector(".produto-item");
 
-let contador = 1;
+            const novo = modelo.cloneNode(true);
 
-document.getElementById("addProduto").addEventListener("click", () => {
+            novo.querySelector("h3").textContent = "Produto " + contador;
 
-    contador++;
+            novo.querySelectorAll("input").forEach(campo => {
 
-    const modelo = document.querySelector(".produto-item");
+                if (campo.type == "checkbox") {
 
-    const novo = modelo.cloneNode(true);
+                    campo.checked = false;
 
-    novo.querySelector("h3").textContent = "Produto " + contador;
+                } else {
 
-    novo.querySelectorAll("input, textarea").forEach(campo => {
+                    campo.value = "";
 
-        if(campo.type==="checkbox"){
-            campo.checked=false;
-        }else{
-            campo.value="";
-        }
+                }
 
-    });
+            });
 
-    document.getElementById("listaProdutos").appendChild(novo);
+            novo.querySelectorAll("textarea").forEach(campo => campo.value = "");
 
-});
+            document.getElementById("listaProdutos").appendChild(novo);
 
-document.addEventListener("click",function(e){
+        });
 
-    if(e.target.classList.contains("removerProduto")){
+        document.addEventListener("click", function (e) {
 
-        const produtos=document.querySelectorAll(".produto-item");
+            if (e.target.classList.contains("removerProduto")) {
 
-        if(produtos.length>1){
+                const produtos = document.querySelectorAll(".produto-item");
 
-            e.target.closest(".produto-item").remove();
+                if (produtos.length > 1) {
 
-        }else{
+                    e.target.closest(".produto-item").remove();
 
-            alert("É necessário manter pelo menos um produto.");
+                } else {
 
-        }
+                    alert("É necessário manter pelo menos um produto.");
 
-    }
+                }
 
-});
+            }
 
-</script>
+        });
 
-<script type="module" src="cadastrar.js"></script>
+    </script>
+
+    <script type="module" src="cadastrar.js"></script>
 
 </body>
+
 </html>
