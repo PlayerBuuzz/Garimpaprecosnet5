@@ -530,19 +530,16 @@ main{
 }
 
 .descricao{
-
-    color:#9a9a9a;
-
+    color:#9d9d9d;
+    font-size:14px;
     line-height:24px;
 
     display:-webkit-box;
-
     -webkit-line-clamp:3;
-
     -webkit-box-orient:vertical;
-
     overflow:hidden;
 
+    min-height:72px;
 }
 
 .preco-antigo{
