@@ -9,206 +9,96 @@
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<header>
+    <header>
 
-    <div class="logo">
-        <h1>⛏️ Garimpa Preços</h1>
-        <span>Antes de comprar, garimpe.</span>
-    </div>
+        <div class="logo">
+            <h1>⛏️ Garimpa Preços</h1>
+            <span>Antes de comprar, garimpe.</span>
+        </div>
 
-    <div class="pesquisa">
+        <div class="pesquisa">
 
-        <input
-            type="text"
-            id="pesquisa"
-            placeholder="Pesquisar produtos...">
+            <input
+                type="text"
+                id="pesquisa"
+                placeholder="Pesquisar produtos...">
 
-        <button id="btnPesquisar">
-            🔍
-        </button>
-
-    </div>
-
-</header>
-
-<section class="hero">
-
-    <div class="hero-texto">
-
-        <span class="badge">
-            🔥 Ofertas atualizadas diariamente
-        </span>
-
-        <h1>
-            Encontre o menor preço da internet
-        </h1>
-
-        <p>
-            Compare preços das principais lojas, descubra promoções e economize
-            antes de comprar.
-        </p>
-
-        <div class="hero-botoes">
-
-            <a href="#produtos" class="btnHero">
-                Ver Ofertas
-            </a>
+            <button id="btnPesquisar">
+                🔍
+            </button>
 
         </div>
 
-    </div>
+    </header>
 
-</section>
+    <section class="hero">
 
-<main>
+        <div class="hero-texto">
 
-    <div class="cabecalhoProdutos">
+            <span class="badge">
+                🔥 Ofertas atualizadas diariamente
+            </span>
 
-        <h2 class="titulo">
-            🔥 Produtos em Destaque
-        </h2>
+            <h1>
+                Encontre o menor preço da internet
+            </h1>
 
-        <span id="contadorProdutos">
-            Carregando...
-        </span>
+            <p>
+                Compare preços das principais lojas, descubra promoções e economize antes de comprar.
+            </p>
 
-    </div>
+            <div class="hero-botoes">
 
-    <div id="produtos">
+                <a href="#produtos" class="btnHero">
+                    Ver Ofertas
+                </a>
 
-        <div class="loading">
-            Carregando produtos...
+            </div>
+
         </div>
 
-    </div>
+    </section>
 
-</main>
+    <main>
 
-<footer>
+        <div class="cabecalhoProdutos">
 
-    © 2026 Garimpa Preços • Todos os direitos reservados.
+            <h2 class="titulo">
+                🔥 Produtos em Destaque
+            </h2>
 
-</footer>
+            <span id="contadorProdutos">
+                Carregando...
+            </span>
 
-<script type="module">
+        </div>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+        <div id="produtos">
 
-const firebaseConfig = {
-apiKey:"AIzaSyCMlDsnSOJC5DNAd47SY6T0xije_IHNv88",
-authDomain:"garimpaprecos-eac4e.firebaseapp.com",
-projectId:"garimpaprecos-eac4e",
-storageBucket:"garimpaprecos-eac4e.firebasestorage.app",
-messagingSenderId:"268744385879",
-appId:"1:268744385879:web:de590dd22b713037ae4a12"
-};
+            <div class="loading">
+                Carregando produtos...
+            </div>
 
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
+        </div>
 
-async function carregarProdutos(){
+    </main>
 
-const div=document.getElementById("produtos");
+    <footer>
 
-const contador=document.getElementById("contadorProdutos");
+        © 2026 Garimpa Preços • Todos os direitos reservados.
 
-try{
+    </footer>
 
-const snapshot=await getDocs(collection(db,"produtos"));
+    <!-- Firebase -->
+    <script type="module" src="firebase.js"></script>
 
-contador.innerHTML=`${snapshot.size} produto(s) encontrado(s)`;
-
-if(snapshot.empty){
-
-div.innerHTML="<h2>Nenhum produto cadastrado.</h2>";
-
-return;
-
-}
-
-let html="";
-
-snapshot.forEach((doc)=>{
-
-const p=doc.data();
-
-html+=`
-
-<div class="card-produto">
-
-<div class="tagOferta">
-🔥 Oferta
-</div>
-
-<img src="${p.imagem || ''}" alt="${p.nome}">
-
-<div class="conteudo">
-
-<h2>${p.nome}</h2>
-
-<p>${p.descricao || ""}</p>
-
-${
-p.precoAntigo
-?
-
-`<span class="preco-antigo">
-R$ ${Number(p.precoAntigo).toFixed(2)}
-</span>`
-
-:
-
-""
-}
-
-<h3>
-
-R$ ${Number(p.preco).toFixed(2)}
-
-</h3>
-
-<a
-href="${p.afiliado || "#"}"
-target="_blank">
-
-<button class="btnOferta">
-
-🛒 Ver Oferta
-
-</button>
-
-</a>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-div.innerHTML=html;
-
-}catch(e){
-
-console.error(e);
-
-div.innerHTML="<h2>Erro ao carregar produtos.</h2>";
-
-}
-
-}
-
-carregarProdutos();
-
-</script>
+    <!-- Produtos -->
+    <script type="module" src="script.js"></script>
 
 </body>
 
