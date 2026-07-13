@@ -1,100 +1,112 @@
-async function carregarProdutos(){
+let produtos = [];
+
+async function carregarProdutos() {
 
     const container = document.getElementById("produtos");
+    const contador = document.getElementById("contadorProdutos");
 
-
-    if(!container){
-        console.error("Elemento produtos não encontrado");
+    if (!container) {
+        console.error("Elemento #produtos não encontrado.");
         return;
     }
 
-
-    console.log("1 - iniciou");
-
-
-    try{
-
+    try {
 
         container.innerHTML = `
-            <h3>Carregando produtos...</h3>
+            <div class="loading">
+                Carregando produtos...
+            </div>
         `;
 
-
-        console.log("2 - buscando Firestore");
-
-
         const resultado = await getDocs(
-            collection(db,"produtos")
+            collection(db, "produtos")
         );
-
-
-        console.log("3 - retornou Firestore");
-
-
-        console.log(
-            "Quantidade:",
-            resultado.size
-        );
-
-
 
         produtos = resultado.docs.map(doc => ({
-
             id: doc.id,
-
             ...doc.data()
-
         }));
 
+        if (contador) {
+            contador.textContent = `${produtos.length} produto(s) encontrado(s)`;
+        }
 
-
-        console.log(
-            "Produtos:",
-            produtos
-        );
-
-
-
-        if(produtos.length === 0){
-
+        if (produtos.length === 0) {
 
             container.innerHTML = `
-
-            <h2>
-            Nenhum produto cadastrado.
-            </h2>
-
+                <div class="loading">
+                    Nenhum produto cadastrado.
+                </div>
             `;
 
             return;
-
         }
-
-
 
         renderizarProdutos(produtos);
 
+    } catch (error) {
 
-
-    }catch(error){
-
-
-        console.error(
-            "ERRO FIREBASE:",
-            error
-        );
-
+        console.error("ERRO FIREBASE:", error);
 
         container.innerHTML = `
-
-        <h2>
-        Erro ao carregar produtos.
-        </h2>
-
-        `;
-
+            <div class="loading">
+                Erro ao carregar produtos.
+            </div>
+        ];
 
     }
 
+}
+
+function renderizarProdutos(lista) {
+
+    const container = document.getElementById("produtos");
+
+    container.innerHTML = lista.map(produto => `
+
+        <div class="card-produto">
+
+            <div class="tagOferta">
+                🔥 Oferta
+            </div>
+
+            <img
+                src="${produto.imagem || 'https://placehold.co/500x500?text=Sem+Imagem'}"
+                alt="${produto.nome}"
+                loading="lazy">
+
+            <div class="conteudo">
+
+                <h2>${produto.nome}</h2>
+
+                <p>${produto.descricao || ""}</p>
+
+                ${
+                    produto.precoAntigo
+                    ?
+                    `<span class="preco-antigo">
+                        R$ ${Number(produto.precoAntigo).toFixed(2)}
+                    </span>`
+                    :
+                    ""
+                }
+
+                <h3>
+                    R$ ${Number(produto.preco).toFixed(2)}
+                </h3>
+
+                <a href="${produto.afiliado || "#"}" target="_blank">
+
+                    <button class="btnOferta">
+                        🛒 Ver Oferta
+                    </button>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    `).join("");
 
 }
