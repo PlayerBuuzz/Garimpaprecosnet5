@@ -1,11 +1,31 @@
+// Importa Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+// Configuração do Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyCMlDsnSOJC5DNAd47SY6T0xije_IHNv88",
+    authDomain: "garimpaprecos-eac4e.firebaseapp.com",
+    projectId: "garimpaprecos-eac4e",
+    storageBucket: "garimpaprecos-eac4e.firebasestorage.app",
+    messagingSenderId: "268744385879",
+    appId: "1:268744385879:web:de590dd22b713037ae4a12"
+};
+
+// Inicializa Firebase e Firestore
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 let produtos = [];
 
+// Função para resumir descrição
 function resumir(texto, tamanho = 120) {
     if (!texto) return "";
     if (texto.length <= tamanho) return texto;
     return texto.substring(0, tamanho) + "... Ver mais";
 }
 
+// Carrega produtos
 async function carregarProdutos() {
     const container = document.getElementById("produtos");
     const contador = document.getElementById("contadorProdutos");
@@ -42,6 +62,7 @@ async function carregarProdutos() {
     }
 }
 
+// Renderiza produtos
 function renderizarProdutos(lista) {
     const container = document.getElementById("produtos");
 
@@ -75,4 +96,5 @@ function renderizarProdutos(lista) {
     `).join("");
 }
 
+// Inicializa
 carregarProdutos();
