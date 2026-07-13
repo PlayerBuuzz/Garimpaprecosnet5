@@ -1,5 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  addDoc
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMlDsnSOJC5DNAd47SY6T0xije_IHNv88",
@@ -16,32 +20,60 @@ const db = getFirestore(app);
 
 console.log("🔥 Firebase conectado");
 
-// Captura o formulário
 const form = document.getElementById("formProduto");
 
 form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // Pega os valores dos campos
-  const produto = {
-    nome: document.getElementById("nome").value,
-    descricao: document.getElementById("descricao").value,
-    categoria: document.getElementById("categoria").value,
-    loja: document.getElementById("loja").value,
-    preco: parseFloat(document.getElementById("preco").value),
-    precoAntigo: parseFloat(document.getElementById("precoAntigo").value) || null,
-    imagem: document.getElementById("imagem").value,
-    afiliado: document.getElementById("afiliado").value,
-    destaque: document.getElementById("destaque").checked,
-    criadoEm: new Date()
-  };
+    const produtos = document.querySelectorAll(".produto-item");
 
-  try {
-    await addDoc(collection(db, "produtos"), produto);
-    alert("✅ Produto cadastrado com sucesso!");
-    form.reset();
-  } catch (error) {
-    console.error("Erro ao salvar produto:", error);
-    alert("❌ Erro ao salvar produto. Veja o console.");
-  }
+    try {
+
+        for (const item of produtos) {
+
+            const produto = {
+
+                nome: item.querySelector('input[name="nome[]"]').value,
+
+                descricao: item.querySelector('textarea[name="descricao[]"]').value,
+
+                categoria: item.querySelector('input[name="categoria[]"]').value,
+
+                loja: item.querySelector('input[name="loja[]"]').value,
+
+                preco: parseFloat(
+                    item.querySelector('input[name="preco[]"]').value
+                ),
+
+                precoAntigo:
+                    parseFloat(
+                        item.querySelector('input[name="precoAntigo[]"]').value
+                    ) || null,
+
+                imagem: item.querySelector('input[name="imagem[]"]').value,
+
+                afiliado: item.querySelector('input[name="afiliado[]"]').value,
+
+                destaque: item.querySelector('input[name="destaque[]"]').checked,
+
+                criadoEm: new Date()
+
+            };
+
+            await addDoc(collection(db, "produtos"), produto);
+
+        }
+
+        alert(`✅ ${produtos.length} produto(s) cadastrado(s) com sucesso!`);
+
+        location.reload();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("❌ Erro ao cadastrar os produtos.");
+
+    }
+
 });
