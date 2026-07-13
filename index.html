@@ -1,90 +1,219 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Garimpa Preços</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garimpa Preços</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-  <header>
+
+<header>
+
     <div class="logo">
-      <h1>⛏️ Garimpa Preços</h1>
-      <span>Antes de comprar, garimpe.</span>
+        <h1>⛏️ Garimpa Preços</h1>
+        <span>Antes de comprar, garimpe.</span>
     </div>
+
     <div class="pesquisa">
-      <input type="text" id="pesquisa" placeholder="Pesquisar produtos...">
-      <button id="btnPesquisar">🔍</button>
+
+        <input
+            type="text"
+            id="pesquisa"
+            placeholder="Pesquisar produtos...">
+
+        <button id="btnPesquisar">
+            🔍
+        </button>
+
     </div>
-  </header>
 
-  <section class="banner">
-    <h2>Encontre o menor preço da internet</h2>
-    <p>Compare ofertas das principais lojas e economize.</p>
-  </section>
+</header>
 
-  <main>
-    <h2 class="titulo">Produtos em destaque</h2>
+<section class="hero">
+
+    <div class="hero-texto">
+
+        <span class="badge">
+            🔥 Ofertas atualizadas diariamente
+        </span>
+
+        <h1>
+            Encontre o menor preço da internet
+        </h1>
+
+        <p>
+            Compare preços das principais lojas, descubra promoções e economize
+            antes de comprar.
+        </p>
+
+        <div class="hero-botoes">
+
+            <a href="#produtos" class="btnHero">
+                Ver Ofertas
+            </a>
+
+            <a href="lancarproduto.html" class="btnHeroSec">
+                Cadastrar Produto
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<main>
+
+    <div class="cabecalhoProdutos">
+
+        <h2 class="titulo">
+            🔥 Produtos em Destaque
+        </h2>
+
+        <span id="contadorProdutos">
+            Carregando...
+        </span>
+
+    </div>
+
     <div id="produtos">
-      <h3>Carregando produtos...</h3>
+
+        <div class="loading">
+            Carregando produtos...
+        </div>
+
     </div>
-  </main>
 
-  <footer>© 2026 Garimpa Preços</footer>
+</main>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+<footer>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCMlDsnSOJC5DNAd47SY6T0xije_IHNv88",
-      authDomain: "garimpaprecos-eac4e.firebaseapp.com",
-      projectId: "garimpaprecos-eac4e",
-      storageBucket: "garimpaprecos-eac4e.firebasestorage.app",
-      messagingSenderId: "268744385879",
-      appId: "1:268744385879:web:de590dd22b713037ae4a12"
-    };
+    © 2026 Garimpa Preços • Todos os direitos reservados.
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    console.log("🔥 Firebase conectado");
+</footer>
 
-    async function carregarProdutos() {
-      const div = document.getElementById("produtos");
-      try {
-        const snapshot = await getDocs(collection(db, "produtos"));
-        console.log("Produtos encontrados:", snapshot.size);
+<script type="module">
 
-        if (snapshot.empty) {
-          div.innerHTML = `<h2>Nenhum produto cadastrado</h2>`;
-          return;
-        }
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-        let html = "";
-        snapshot.forEach((doc) => {
-          const p = doc.data();
-          console.log(p);
-          html += `
-            <div class="card-produto">
-              <img src="${p.imagem || ''}">
-              <div class="conteudo">
-                <h2>${p.nome || "Produto"}</h2>
-                <p>${p.descricao || ""}</p>
-                <h3>R$ ${p.preco || "0"}</h3>
-                <button class="btnOferta">Ver Oferta</button>
-              </div>
-            </div>
-          `;
-        });
-        div.innerHTML = html;
-      } catch (e) {
-        console.error("Erro Firebase:", e);
-        div.innerHTML = `<h2>Erro ao carregar produtos</h2>`;
-      }
-    }
+const firebaseConfig = {
+apiKey:"AIzaSyCMlDsnSOJC5DNAd47SY6T0xije_IHNv88",
+authDomain:"garimpaprecos-eac4e.firebaseapp.com",
+projectId:"garimpaprecos-eac4e",
+storageBucket:"garimpaprecos-eac4e.firebasestorage.app",
+messagingSenderId:"268744385879",
+appId:"1:268744385879:web:de590dd22b713037ae4a12"
+};
 
-    carregarProdutos();
-  </script>
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+
+async function carregarProdutos(){
+
+const div=document.getElementById("produtos");
+
+const contador=document.getElementById("contadorProdutos");
+
+try{
+
+const snapshot=await getDocs(collection(db,"produtos"));
+
+contador.innerHTML=`${snapshot.size} produto(s) encontrado(s)`;
+
+if(snapshot.empty){
+
+div.innerHTML="<h2>Nenhum produto cadastrado.</h2>";
+
+return;
+
+}
+
+let html="";
+
+snapshot.forEach((doc)=>{
+
+const p=doc.data();
+
+html+=`
+
+<div class="card-produto">
+
+<div class="tagOferta">
+🔥 Oferta
+</div>
+
+<img src="${p.imagem || ''}" alt="${p.nome}">
+
+<div class="conteudo">
+
+<h2>${p.nome}</h2>
+
+<p>${p.descricao || ""}</p>
+
+${
+p.precoAntigo
+?
+
+`<span class="preco-antigo">
+R$ ${Number(p.precoAntigo).toFixed(2)}
+</span>`
+
+:
+
+""
+}
+
+<h3>
+
+R$ ${Number(p.preco).toFixed(2)}
+
+</h3>
+
+<a
+href="${p.afiliado || "#"}"
+target="_blank">
+
+<button class="btnOferta">
+
+🛒 Ver Oferta
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+div.innerHTML=html;
+
+}catch(e){
+
+console.error(e);
+
+div.innerHTML="<h2>Erro ao carregar produtos.</h2>";
+
+}
+
+}
+
+carregarProdutos();
+
+</script>
+
 </body>
+
 </html>
