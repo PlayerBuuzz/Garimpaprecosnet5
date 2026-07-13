@@ -79,20 +79,14 @@ function renderizarProdutos(lista) {
 
                 <h2>${produto.nome}</h2>
 
-                <p class="descricao">
-                ${
+            <p class="descricao">
+            ${
                 produto.descricao
-                ?
-                produto.descricao.length > 90
-                ?
-                produto.descricao.substring(0,90) + "..."
-                :
-                produto.descricao
-                :
-                ""
-                }
-                
-                </p>
+                    ? produto.descricao.substring(0, 120) +
+                      (produto.descricao.length > 120 ? "..." : "")
+                    : ""
+            }
+            </p>
         
                 ${
                     produto.precoAntigo
