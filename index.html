@@ -1,106 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garimpa Preços</title>
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="img/Favicon.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090716">
+<meta name="description" content="Links oficiais do Nerd Supremo: YouTube, TikTok, Discord, X e apoio via PIX.">
+<title>Nerd Supremo | Links Oficiais</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+:root{--bg:#080714;--panel:#131126;--purple:#a95bff;--cyan:#37e7ff;--pink:#ff4bc2;--text:#f7f4ff;--muted:#aaa6c3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,Arial,sans-serif;background:radial-gradient(ellipse at 50% -10%,#362063 0,transparent 48%),radial-gradient(ellipse at 90% 85%,#122a49 0,transparent 35%),var(--bg);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#0008,transparent 95%)}
+.orb{position:fixed;border-radius:50%;filter:blur(75px);opacity:.3;pointer-events:none}.orb.one{width:240px;height:240px;background:#9b3fff;left:-120px;top:20%}.orb.two{width:280px;height:280px;background:#00d5ff;right:-150px;bottom:8%}
+.layout{width:min(100% - 28px,520px);margin:0 auto;padding:45px 0 38px;position:relative;z-index:1}.topline{display:flex;justify-content:center;align-items:center;gap:9px;font:700 11px Oxanium,sans-serif;letter-spacing:3px;color:var(--cyan);margin-bottom:22px}.dot{height:7px;width:7px;border-radius:50%;background:#52ffb8;box-shadow:0 0 12px #52ffb8;animation:pulse 2s infinite}
+.profile{text-align:center}.avatar{position:relative;width:116px;height:116px;margin:auto;border-radius:30px;padding:3px;background:linear-gradient(140deg,var(--cyan),var(--purple),var(--pink));box-shadow:0 0 35px #a95bff55;transform:rotate(-5deg)}.avatar-inner{height:100%;border-radius:27px;background:#100d24;display:grid;place-items:center;transform:rotate(5deg)}.avatar svg{width:72px;height:72px;filter:drop-shadow(0 0 12px #a95bff88)}h1{font:800 clamp(34px,8vw,48px)/1 Oxanium,sans-serif;letter-spacing:-1px;margin:24px 0 9px;text-shadow:0 0 22px #ad55ff55}h1 span{color:var(--cyan)}.handle{color:var(--purple);font:700 13px Oxanium,sans-serif;letter-spacing:2px}.bio{color:var(--muted);font-size:14px;line-height:1.7;margin:15px auto 27px;max-width:350px}.chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:28px}.chip{border:1px solid #ffffff1e;border-radius:99px;padding:7px 12px;font:600 11px Oxanium,sans-serif;color:#ddd8f5;background:#ffffff08}
+.section-heading{display:flex;align-items:center;gap:12px;color:#c5c1df;font:700 11px Oxanium,sans-serif;letter-spacing:2px;margin:25px 0 13px}.section-heading:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,#7f65a950,transparent)}.links{display:grid;gap:13px}.link{position:relative;display:flex;align-items:center;gap:15px;padding:17px 17px;border:1px solid #ffffff1d;background:linear-gradient(105deg,#201b39ee,#100f23ee);border-radius:17px;color:inherit;text-decoration:none;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}.link:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,#ffffff08,transparent);transform:translateX(-110%);transition:transform .6s}.link:hover:before{transform:translateX(110%)}.link:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 8px 30px color-mix(in srgb,var(--accent) 18%,transparent)}.link .iconbox{height:49px;width:49px;flex:none;display:grid;place-items:center;border-radius:13px;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)}.iconbox svg{width:25px;height:25px;fill:currentColor}.link .info{flex:1;min-width:0}.link strong{display:block;font:800 17px Oxanium,sans-serif}.link small{display:block;color:#aaa6c3;font-size:12px;margin-top:4px}.arrow{color:var(--accent);font-size:22px;transition:transform .2s}.link:hover .arrow{transform:translateX(4px)}
+.pix{position:relative;margin-top:12px;padding:21px;border:1px solid #3b9caa75;border-radius:19px;background:linear-gradient(125deg,#102936dd,#19122cdd);box-shadow:inset 0 0 28px #20d7e509}.pix-header{display:flex;align-items:center;gap:12px}.pix-icon{width:43px;height:43px;border-radius:12px;display:grid;place-items:center;background:#27e4e51d;color:#46f6e8;font-size:27px}.pix h2{font:800 19px Oxanium,sans-serif;margin:0}.pix p{color:#b5b3cc;font-size:12px;line-height:1.5;margin:5px 0 0}.pix-key{font:500 11px/1.5 monospace;overflow-wrap:anywhere;padding:12px;margin:17px 0 12px;background:#080f1c99;border:1px dashed #5a9aab55;border-radius:10px;color:#d5faff;text-align:center}.copy{width:100%;cursor:pointer;border:0;border-radius:11px;background:linear-gradient(90deg,#27d9eb,#8b6bff);padding:14px;color:#090d1b;font:800 14px Oxanium,sans-serif;letter-spacing:.5px;transition:filter .2s,transform .2s}.copy:hover{filter:brightness(1.12);transform:translateY(-2px)}.copy:focus-visible,.link:focus-visible{outline:3px solid #fff;outline-offset:4px}.copy:disabled{opacity:.7}.footer{text-align:center;margin-top:32px;color:#77728f;font:600 11px Oxanium,sans-serif;letter-spacing:1px}.footer b{color:var(--purple)}.foot-line{width:90px;height:2px;background:linear-gradient(90deg,transparent,var(--purple),var(--cyan),transparent);margin:0 auto 16px}
+@keyframes pulse{50%{box-shadow:0 0 2px #52ffb8;opacity:.6}}@media(min-width:850px){.layout{padding-top:62px;padding-bottom:55px}.links{gap:15px}.link{padding:19px 20px}}@media(max-width:360px){.layout{width:calc(100% - 24px)}.link{gap:11px;padding:14px}.link strong{font-size:15px}.link small{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
 </head>
-
 <body>
-
-    <header>
-
-        <div class="logo">
-            <h1>⛏️ Garimpa Preços</h1>
-            <span>Antes de comprar, garimpe.</span>
-        </div>
-
-        <div class="pesquisa">
-
-            <input
-                type="text"
-                id="pesquisa"
-                placeholder="Pesquisar produtos...">
-
-            <button id="btnPesquisar">
-                🔍
-            </button>
-
-        </div>
-
-    </header>
-
-    <section class="hero">
-
-        <div class="hero-texto">
-
-            <span class="badge">
-                🔥 Ofertas atualizadas diariamente
-            </span>
-
-            <h1>
-                Encontre o menor preço da internet
-            </h1>
-
-            <p>
-                Compare preços das principais lojas, descubra promoções e economize antes de comprar.
-            </p>
-
-            <div class="hero-botoes">
-
-                <a href="#produtos" class="btnHero">
-                    Ver Ofertas
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <main>
-
-        <div class="cabecalhoProdutos">
-
-            <h2 class="titulo">
-                🔥 Produtos em Destaque
-            </h2>
-
-            <span id="contadorProdutos">
-                Carregando...
-            </span>
-
-        </div>
-
-        <div id="produtos">
-
-            <div class="loading">
-                Carregando produtos...
-            </div>
-
-        </div>
-
-    </main>
-
-    <footer>
-
-        © 2026 Garimpa Preços • Todos os direitos reservados.
-
-    </footer>
-
-    <!-- Firebase -->
-    <script type="module" src="firebase.js"></script>
-
-    <!-- Produtos -->
-    <script type="module" src="script.js"></script>
-
+<div class="orb one" aria-hidden="true"></div><div class="orb two" aria-hidden="true"></div>
+<main class="layout">
+<div class="topline"><span class="dot"></span> PLAYER ONE · ONLINE</div>
+<header class="profile">
+<div class="avatar" aria-hidden="true"><div class="avatar-inner"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M28 33h44c10 0 15 7 18 20l4 20c2 13-9 18-18 9L63 70H37L24 82C15 91 4 86 6 73l4-20c3-13 8-20 18-20Z" fill="#9d59ff" stroke="#45eaff" stroke-width="3"/><path d="M29 45v19M20 54h18" stroke="#fff" stroke-width="6" stroke-linecap="round"/><circle cx="66" cy="49" r="5" fill="#46f6e8"/><circle cx="77" cy="60" r="5" fill="#ff5fcd"/></svg></div></div>
+<h1>NERD <span>SUPREMO</span></h1><div class="handle">@NERDSUPREMO08</div>
+<p class="bio">🎮 Games, caos, risadas e muita gameplay!<br>Escolha seu portal e entre para a comunidade.</p>
+<div class="chips"><span class="chip">⚡ GAMER</span><span class="chip">👾 GEEK</span><span class="chip">🔥 LEVEL UP</span></div>
+</header>
+<div class="section-heading">// ESCOLHA SEU PORTAL</div>
+<nav class="links" aria-label="Redes sociais do Nerd Supremo">
+<a class="link" style="--accent:#ff4c64" href="https://www.youtube.com/@nerdsupremo08" target="_blank" rel="noopener noreferrer"><span class="iconbox"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.6 15.5v-7l6.1 3.5-6.1 3.5Z"/></svg></span><span class="info"><strong>YouTube</strong><small>Vídeos, gameplays e Shorts</small></span><span class="arrow" aria-hidden="true">↗</span></a>
+<a class="link" style="--accent:#55f3ee" href="https://www.tiktok.com/@n3rdsupr3mo?_r=1&amp;_t=ZS-9BAGYIk297Y" target="_blank" rel="noopener noreferrer"><span class="iconbox"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.7 2h-3.5v13.4a3.2 3.2 0 1 1-2.7-3.2V8.6a6.8 6.8 0 1 0 6.2 6.8V8.5a8.7 8.7 0 0 0 5.1 1.6V6.6A5.2 5.2 0 0 1 16.7 2Z"/></svg></span><span class="info"><strong>TikTok</strong><small>Cortes, momentos e diversão</small></span><span class="arrow" aria-hidden="true">↗</span></a>
+<a class="link" style="--accent:#8994ff" href="https://discord.com/invite/7b48HzwAZ" target="_blank" rel="noopener noreferrer"><span class="iconbox"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.7 5.1A18 18 0 0 0 15.4 3l-.5 1.1a16 16 0 0 0-5.8 0L8.6 3a18 18 0 0 0-4.3 2.1C1.6 9.2.9 13.2 1.3 17.2a18 18 0 0 0 5.3 2.7l1.1-1.8-1.7-.9.4-.3c3.5 1.7 7.7 1.7 11.2 0l.4.3-1.7.9 1.1 1.8a18 18 0 0 0 5.3-2.7c.5-4.6-.8-8.6-3-12.1ZM8.6 14.8c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.8 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg></span><span class="info"><strong>Discord</strong><small>Entre para nossa comunidade</small></span><span class="arrow" aria-hidden="true">↗</span></a>
+<a class="link" style="--accent:#ffffff" href="https://x.com/Al3_05x" target="_blank" rel="noopener noreferrer"><span class="iconbox"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-7.4L5.5 22H2.3l7.3-8.5L1.8 2h6.5l4.5 6.8L18.9 2Zm-1.1 18h1.7L7.4 3.9H5.6L17.8 20Z"/></svg></span><span class="info"><strong>X / Twitter</strong><small>Novidades e atualizações</small></span><span class="arrow" aria-hidden="true">↗</span></a>
+</nav>
+<div class="section-heading">// APOIE O CANAL</div>
+<section class="pix" aria-labelledby="pix-title"><div class="pix-header"><div class="pix-icon" aria-hidden="true">◇</div><div><h2 id="pix-title">Donate via PIX</h2><p>Ajude o canal a subir de nível! 💜</p></div></div><div class="pix-key" id="pixKey">61b56120-f019-4f68-9d30-24778dd7dec4</div><button type="button" class="copy" id="copyPix">▣ COPIAR CHAVE PIX</button><p id="copyStatus" role="status" aria-live="polite" style="text-align:center;min-height:18px"></p></section>
+<footer class="footer"><div class="foot-line"></div>FEITO PARA A COMUNIDADE <b>NERD SUPREMO</b><br><br>GAME ON · NEVER LOG OUT 🎮</footer>
+</main>
+<script>
+const pix='61b56120-f019-4f68-9d30-24778dd7dec4';
+const btn=document.getElementById('copyPix');const status=document.getElementById('copyStatus');
+btn.addEventListener('click',async()=>{
+ try{
+  if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(pix)}
+  else{const t=document.createElement('textarea');t.value=pix;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();if(!ok)throw new Error('Falha ao copiar')}
+  btn.textContent='✓ CHAVE PIX COPIADA!';status.textContent='Pronto! Agora é só colar no aplicativo do seu banco.';
+  setTimeout(()=>{btn.textContent='▣ COPIAR CHAVE PIX';status.textContent=''},3500);
+ }catch(e){status.textContent='Não foi possível copiar automaticamente. Selecione a chave acima para copiar.'}
+});
+</script>
 </body>
-
 </html>
